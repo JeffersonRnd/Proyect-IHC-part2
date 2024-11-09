@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper-bundle.min.css" />
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="loadingScreen" class="loading-screen">
+        <img src="images/logo.svg" alt="Logo" class="loading-logo">
+        <h1>Cargando...</h1>
+    </div>
+
+    <div class="top-banner"></div>
+    <div class="menu container">
+        <input type="checkbox" id="menu" />
+        <label for="menu">
+            <img src="images/menu.png" class="menu-icon" alt="">
+        </label>
+        <nav class="navbar">
+            <img class="logo-2" src="images/logo.svg" alt="">
+            <div class="menu-1">
+                <!-- Ícono de la casa -->
+                <a href="#" onclick="location.reload();" class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                        class="bi bi-house" viewBox="0 0 16 16">
+                        <path
+                            d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z" />
+                    </svg>
+                </a>
+                <!-- Ícono de la persona que redirige al login de GitHub -->
+                <a href="https://jeffersonrnd.github.io/Proyect-IHC/" target="_blank" class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                        class="bi bi-person-fill" viewBox="0 0 16 16">
+                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                    </svg>
+                </a>
+            </div>
+
+            <!-- Contenedor principal -->
+
+
+            <div class="search-container">
+                <!-- Barra de búsqueda -->
+                <form class="search-bar" role="search">
+                    <div class="search-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-search" viewBox="0 0 16 16">
+                            <path
+                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                        </svg>
+                    </div>
+                    <input type="search" class="form-control" placeholder="Buscar..." aria-label="Buscar">
+                </form>
+
+                <!-- Ícono del carrito -->
+                <div class="cart-icon" onclick="toggleModal()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                        class="bi bi-cart4" viewBox="0 0 16 16">
+                        <path
+                            d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+                    </svg>
+                </div>
+
+                <!-- Modal para productos y métodos de pago -->
+                <div class="modal" id="cartModal">
+                    <div class="modal-content">
+                        <span class="close-btn" onclick="toggleModal()">&times;</span>
+                        <h3>PRODUCTOS A PAGAR:</h3>
+                        <p class="product-list">Acá aparecerán los productos agregados
+                            anteriormente al carrito
+                        </p>
+                        <h4>Métodos de pago:</h4>
+                        <div class="payment-methods">
+                            <img src="images/p1.png" alt="Método de pago 1" class="payment-icon">
+                            <img src="images/p2.png" alt="Método de pago 2" class="payment-icon">
+                            <div class="payment-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-credit-card" viewBox="0 0 16 16">
+                                    <path
+                                        d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1z" />
+                                    <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" />
+                                </svg>
+                                <span>Tarjeta</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <div class="menu-2">
+                <div class="links">
+                    <div class="socials">
+                        <a href="https://www.facebook.com" class="social1 facebook" target="_blank"
+                            rel="noopener noreferrer">
+                            <img src="images/s1.svg" alt="Facebook">
+                        </a>
+                        <a href="https://www.twitter.com" class="social1 twitter" target="_blank"
+                            rel="noopener noreferrer">
+                            <img src="images/s2.svg" alt="X">
+                        </a>
+                        <a href="https://www.instagram.com" class="social1 instagram" target="_blank"
+                            rel="noopener noreferrer">
+                            <img src="images/s3.svg" alt="Instagram">
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+    </div>
+
+    <header>
+
+
+        <div class="header-content container">
+
+            <div class="of container">
+                <h2>Ofertas de este mes</h2>
+            </div>
+
+            <div class="slider">
+                <div class="slider-txt">
+                    <h1>15% de Dcto.</h1>
+                    <p>
+                        Para todos los licores.
+                    </p>
+                    <div class="botones">
+                        <span class="agregar-al-carrito">Agregar al carrito</span>
+                        <div class="cart-icon" onclick="mostrarMensaje(this)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                class="bi bi-cart4" viewBox="0 0 16 16">
+                                <path
+                                    d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+                            </svg>
+                            <div class="mensaje">¡Se agregó correctamente!</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-img">
+                    <img src="images/slider2.png" alt="">
+                </div>
+            </div>
+
+            <div class="slider">
+                <div class="slider-txt">
+                    <h1>10% de Dcto.</h1>
+                    <p>
+                        RED BULL sin azúcar
+                    </p>
+                    <div class="botones">
+                        <span class="agregar-al-carrito">Agregar al carrito</span>
+                        <div class="cart-icon" onclick="mostrarMensaje(this)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                class="bi bi-cart4" viewBox="0 0 16 16">
+                                <path
+                                    d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+                            </svg>
+                            <div class="mensaje">¡Se agregó correctamente!</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-img">
+                    <img src="images/slider1.png" alt="">
+                </div>
+            </div>
+
+            <div class="slider">
+                <div class="slider-txt">
+                    <h1>9.09 % de Dcto.</h1>
+                    <p>
+                        Gloria Leche azul
+                        Pack x6
+                    </p>
+                    <div class="botones">
+                        <span class="agregar-al-carrito">Agregar al carrito</span>
+                        <div class="cart-icon" onclick="mostrarMensaje(this)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                class="bi bi-cart4" viewBox="0 0 16 16">
+                                <path
+                                    d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+                            </svg>
+                            <div class="mensaje">¡Se agregó correctamente!</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="slider-img">
+                    <img src="images/slider3.png" alt="">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="cat container">
+
+            <h2>CATEGORÍAS</h2>
+
+        </div>
+        <div class="tabs container">
+            <input type="radio" name="tabs" id="tab1" checked="checked" class="tabInput" value="1">
+
+            <label for="tab1">|Abarrotes|</label>
+            <div class="tab">
+
+                <div class="product">
+                    <div class="product-img">
+
+                        <img src="images/food1.png" alt="">
+                    </div>
+                    <div class="product-txt">
+                        <h4>ACEITE</h4>
+                        <p>Cocinero 1L</p>
+                        <p>S/. 8.27</p>
+                        <div class="botones">
+                            <span class="agregar-al-carrito">Agregar al carrito</span>
+                            <div class="cart-icon" onclick="mostrarMensaje(this)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    class="bi bi-cart4" viewBox="0 0 16 16">
+                                    <path
+                                        d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+                                </svg>
+                                <div class="mensaje">¡Se agregó correctamente!</div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+
+                <div class="product">
+                    <div class="product-img">
+
+                        <img src="images/food2.png" alt="">
+                    </div>
+                    <div class="product-txt">
+                        <h4>Cacillero de huevos</h4>
+                        <p>15 unidades</p>
+                        <p>S/. 20.00</p>
+                        <div class="botones">
+                            <span class="agregar-al-carrito">Agregar al carrito</span>
+                            <div class="cart-icon" onclick="mostrarMensaje(this)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    class="bi bi-cart4" viewBox="0 0 16 16">
+                                    <path
+                                        d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+                                </svg>
+                                <div class="mensaje">¡Se agregó correctamente!</div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+
+                <div class="product">
+                    <div class="product-img">
+
+                        <img src="images/food3.png" alt="">
+                    </div>
+                    <div class="product-txt">
+                        <h4>SAL</h4>
+                        <p>Marina 1kg</p>
+                        <p>S/. 2.40</p>
+                        <div class="botones">
+                            <span class="agregar-al-carrito">Agregar al carrito</span>
+                            <div class="cart-icon" onclick="mostrarMensaje(this)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    class="bi bi-cart4" viewBox="0 0 16 16">
+                                    <path
+                                        d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+                                </svg>
+                                <div class="mensaje">¡Se agregó correctamente!</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <input type="radio" name="tabs" id="tab2" checked="checked" class="tabInput" value="2">
+            <label for="tab2">|Licores|</label>
+            <div class="tab">
+
+
+
+                <div class="product">
+                    <div class="product-img">
+
+                        <img src="images/food4.png" alt="">
+                    </div>
+                    <div class="product-txt">
+                        <h4>Whisky JOHNNIE WALKER</h4>
+                        <p>Black Label Botella 750ml</p>
+                        <p>S/. 149.90</p>
+                        <div class="botones">
+                            <span class="agregar-al-carrito">Agregar al carrito</span>
+                            <div class="cart-icon" onclick="mostrarMensaje(this)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    class="bi bi-cart4" viewBox="0 0 16 16">
+                                    <path
+                                        d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+                                </svg>
+                                <div class="mensaje">¡Se agregó correctamente!</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="product">
+                    <div class="product-img">
+
+                        <img src="images/food5.png" alt="">
+                    </div>
+                    <div class="product-txt">
+                        <h4>Vino Tinto SANTIAGO QUEIROLO</h4>
+                        <p>Borgoña Semiseco Botella 750ml</p>
+                        <p>S/. 31.90</p>
+                        <div class="botones">
+                            <span class="agregar-al-carrito">Agregar al carrito</span>
+                            <div class="cart-icon" onclick="mostrarMensaje(this)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    class="bi bi-cart4" viewBox="0 0 16 16">
+                                    <path
+                                        d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+                                </svg>
+                                <div class="mensaje">¡Se agregó correctamente!</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="product">
+                    <div class="product-img">
+
+                        <img src="images/food6.png" alt="">
+                    </div>
+                    <div class="product-txt">
+                        <h4>Whiskey BLACK WHISKEY</h4>
+                        <p>Botella 700ml</p>
+                        <p>S/. 169.90</p>
+                        <div class="botones">
+                            <span class="agregar-al-carrito">Agregar al carrito</span>
+                            <div class="cart-icon" onclick="mostrarMensaje(this)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    class="bi bi-cart4" viewBox="0 0 16 16">
+                                    <path
+                                        d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+                                </svg>
+                                <div class="mensaje">¡Se agregó correctamente!</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <input type="radio" name="tabs" id="tab3" checked="checked" class="tabInput" value="3">
+            <label for="tab3">|Limpieza|</label>
+            <div class="tab">
+
+
+
+                <div class="product">
+                    <div class="product-img">
+
+                        <img src="images/food7.png" alt="">
+                    </div>
+                    <div class="product-txt">
+                        <h4>Detergente</h4>
+                        <p>Opal ultra 9kg</p>
+                        <p>S/. 74.90</p>
+                        <div class="botones">
+                            <span class="agregar-al-carrito">Agregar al carrito</span>
+                            <div class="cart-icon" onclick="mostrarMensaje(this)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    class="bi bi-cart4" viewBox="0 0 16 16">
+                                    <path
+                                        d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+                                </svg>
+                                <div class="mensaje">¡Se agregó correctamente!</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="product">
+                    <div class="product-img">
+
+                        <img src="images/food8.png" alt="">
+                    </div>
+                    <div class="product-txt">
+                        <h4>Suavizante</h4>
+                        <p>Downy 800ml</p>
+                        <p>S/. 20.34</p>
+                        <div class="botones">
+                            <span class="agregar-al-carrito">Agregar al carrito</span>
+                            <div class="cart-icon" onclick="mostrarMensaje(this)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    class="bi bi-cart4" viewBox="0 0 16 16">
+                                    <path
+                                        d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+                                </svg>
+                                <div class="mensaje">¡Se agregó correctamente!</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="product">
+                    <div class="product-img">
+
+                        <img src="images/food9.png" alt="">
+                    </div>
+                    <div class="product-txt">
+                        <h4>Jabón</h4>
+                        <p>Bolivar 190g</p>
+                        <p>S/. 5.70</p>
+                        <div class="botones">
+                            <span class="agregar-al-carrito">Agregar al carrito</span>
+                            <div class="cart-icon" onclick="mostrarMensaje(this)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    class="bi bi-cart4" viewBox="0 0 16 16">
+                                    <path
+                                        d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+                                </svg>
+                                <div class="mensaje">¡Se agregó correctamente!</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <input type="radio" name="tabs" id="tab4" class="tabInput" value="4">
+
+            <label for="tab4">|Carnes|</label>
+            <div class="tab">
+
+                <div class="product">
+                    <div class="product-img">
+
+                        <img src="images/food10.png" alt="">
+                    </div>
+                    <div class="product-txt">
+                        <h4>POLLO ENTERO</h4>
+                        <p>POR KG</p>
+                        <p>S/. 9.40</p>
+                        <div class="botones">
+                            <span class="agregar-al-carrito">Agregar al carrito</span>
+                            <div class="cart-icon" onclick="mostrarMensaje(this)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    class="bi bi-cart4" viewBox="0 0 16 16">
+                                    <path
+                                        d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+                                </svg>
+                                <div class="mensaje">¡Se agregó correctamente!</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="product">
+                    <div class="product-img">
+
+                        <img src="images/food11.png" alt="">
+                    </div>
+                    <div class="product-txt">
+                        <h4>Cerdo</h4>
+                        <p>costillas</p>
+                        <p>S/. 15.50</p>
+                        <div class="botones">
+                            <span class="agregar-al-carrito">Agregar al carrito</span>
+                            <div class="cart-icon" onclick="mostrarMensaje(this)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    class="bi bi-cart4" viewBox="0 0 16 16">
+                                    <path
+                                        d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+                                </svg>
+                                <div class="mensaje">¡Se agregó correctamente!</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="product">
+                    <div class="product-img">
+
+                        <img src="images/food12.png" alt="">
+                    </div>
+                    <div class="product-txt">
+                        <h4>Pescado</h4>
+                        <p>salmón x unidad</p>
+                        <p>S/. 18.30</p>
+                        <div class="botones">
+                            <span class="agregar-al-carrito">Agregar al carrito</span>
+                            <div class="cart-icon" onclick="mostrarMensaje(this)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    class="bi bi-cart4" viewBox="0 0 16 16">
+                                    <path
+                                        d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+                                </svg>
+                                <div class="mensaje">¡Se agregó correctamente!</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <input type="radio" name="tabs" id="tab5" class="tabInput" value="5">
+
+            <label for="tab5">|Bebidas|</label>
+            <div class="tab">
+
+                <div class="product">
+                    <div class="product-img">
+
+                        <img src="images/food13.png" alt="">
+                    </div>
+                    <div class="product-txt">
+                        <h4>Agua Cielo</h4>
+                        <p>Botella 1L</p>
+                        <p>S/. 1.00</p>
+                        <div class="botones">
+                            <span class="agregar-al-carrito">Agregar al carrito</span>
+                            <div class="cart-icon" onclick="mostrarMensaje(this)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    class="bi bi-cart4" viewBox="0 0 16 16">
+                                    <path
+                                        d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+                                </svg>
+                                <div class="mensaje">¡Se agregó correctamente!</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="product">
+                    <div class="product-img">
+
+                        <img src="images/food14.png" alt="">
+                    </div>
+                    <div class="product-txt">
+                        <h4>Gaseosa INCA KOLA</h4>
+                        <p>Botella 3L</p>
+                        <p>S/. 11.60</p>
+                        <div class="botones">
+                            <span class="agregar-al-carrito">Agregar al carrito</span>
+                            <div class="cart-icon" onclick="mostrarMensaje(this)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    class="bi bi-cart4" viewBox="0 0 16 16">
+                                    <path
+                                        d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+                                </svg>
+                                <div class="mensaje">¡Se agregó correctamente!</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <div class="product-img">
+
+                        <img src="images/food15.png" alt="">
+                    </div>
+                    <div class="product-txt">
+                        <h4>VOLT</h4>
+                        <p>Botella 300ml</p>
+                        <p>S/. 2.49</p>
+                        <div class="botones">
+                            <span class="agregar-al-carrito">Agregar al carrito</span>
+                            <div class="cart-icon" onclick="mostrarMensaje(this)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    class="bi bi-cart4" viewBox="0 0 16 16">
+                                    <path
+                                        d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+                                </svg>
+                                <div class="mensaje">¡Se agregó correctamente!</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <input type="radio" name="tabs" id="tab6" class="tabInput" value="6">
+
+            <label for="tab6">|Panadería|</label>
+            <div class="tab">
+
+                <div class="product">
+                    <div class="product-img">
+
+                        <img src="images/food16.png" alt="">
+                    </div>
+                    <div class="product-txt">
+                        <h4>Pan marraqueta</h4>
+                        <p>2 unidades</p>
+                        <p>S/. 1.00</p>
+                        <div class="botones">
+                            <span class="agregar-al-carrito">Agregar al carrito</span>
+                            <div class="cart-icon" onclick="mostrarMensaje(this)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    class="bi bi-cart4" viewBox="0 0 16 16">
+                                    <path
+                                        d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+                                </svg>
+                                <div class="mensaje">¡Se agregó correctamente!</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <div class="product-img">
+
+                        <img src="images/food17.png" alt="">
+                    </div>
+                    <div class="product-txt">
+                        <h4>Pan torta</h4>
+                        <p>3 unidades</p>
+                        <p>S/. 1.00</p>
+                        <div class="botones">
+                            <span class="agregar-al-carrito">Agregar al carrito</span>
+                            <div class="cart-icon" onclick="mostrarMensaje(this)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    class="bi bi-cart4" viewBox="0 0 16 16">
+                                    <path
+                                        d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+                                </svg>
+                                <div class="mensaje">¡Se agregó correctamente!</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <div class="product-img">
+
+                        <img src="images/food18.png" alt="">
+                    </div>
+                    <div class="product-txt">
+                        <h4>Alfajoes de maicena</h4>
+                        <p>la unidad</p>
+                        <p>S/. 3.00</p>
+                        <div class="botones">
+                            <span class="agregar-al-carrito">Agregar al carrito</span>
+                            <div class="cart-icon" onclick="mostrarMensaje(this)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    class="bi bi-cart4" viewBox="0 0 16 16">
+                                    <path
+                                        d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+                                </svg>
+                                <div class="mensaje">¡Se agregó correctamente!</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+    </header>
+
+
+
+
+    <section class="horario">
+        <div class="horario-info container">
+
+            <h2>Horarios de atención</h2>
+            <div class="horario-txt">
+
+                <div class="txt">
+                    <p>
+
+                        - Lunes a viernes : 6am - 8pm
+                    </p>
+                    <p>
+
+                        - Sabado y Domingo : 8am - 7pm
+                    </p>
+
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section>
+        <iframe class="map"
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11957.287078023235!2d-78.5024917267991!3d-7.165397476269074!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91b25b1e5d03bad7%3A0x8f8b1402009e39af!2sLicorer%C3%ADa%20Rezak!5e1!3m2!1ses-419!2spe!4v1731029429693!5m2!1ses-419!2spe"
+            width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </section>
+
+    <footer class="footer container">
+        <img class="logo-2" src="images/logo.svg" alt="">
+        <div class="links">
+            <h4>Ubícanos en</h4>
+            <ul>
+                <li> <a href="#">Jr. Ancash 288</a></li>
+
+            </ul>
+
+        </div>
+        <div class="links">
+            <h4>Contáctanos</h4>
+            <ul>
+                <li> <a href="#">98764321</a></li>
+
+            </ul>
+        </div>
+        <div class="links">
+            <h4>Síguenos</h4>
+            <div class="links">
+                <div class="socials">
+                    <a href="https://www.facebook.com" class="social1 facebook" target="_blank"
+                        rel="noopener noreferrer">
+                        <img src="images/s1.svg" alt="Facebook">
+                    </a>
+                    <a href="https://www.twitter.com" class="social1 twitter" target="_blank" rel="noopener noreferrer">
+                        <img src="images/s2.svg" alt="X">
+                    </a>
+                    <a href="https://www.instagram.com" class="social1 instagram" target="_blank"
+                        rel="noopener noreferrer">
+                        <img src="images/s3.svg" alt="Instagram">
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </footer>
+    <div style="text-align: center; padding: 10px;">
+        <p style="color: white;">"STORE - MANAGER" 20/08/2024</p>
+    </div>
+   
+    <div style="text-align: center; padding: 20px 0;">
+        <p style="color: white;">¡Califícanos en la siguiente encuesta!</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScKRdEE8SpPFmMzo3LIUNJz4ti1TyRepmAb67w_RgW-udH-Cg/viewform?usp=sf_link" style="color: #4CAF50; text-decoration: none;">Haz clic aquí para la
+            encuesta</a>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
