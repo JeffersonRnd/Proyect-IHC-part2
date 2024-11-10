@@ -585,7 +585,7 @@ h3 {
     margin-top: 100px;
 }
 .cat h2:nth-of-type(2) {
-    font-size: 20px; /* Ajusta el tamaño de fuente */
+    font-size: 40px; /* Ajusta el tamaño de fuente */
     font-weight: normal; /* Reduce el grosor de la fuente si lo deseas */
     margin-left: 500px;
     text-transform: none; /* Remueve la mayúscula si lo deseas */
