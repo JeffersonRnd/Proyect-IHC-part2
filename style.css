@@ -585,11 +585,11 @@ h3 {
     margin-top: 100px;
 }
 .cat h2:nth-of-type(2) {
-    font-size: 40px; /* Ajusta el tamaño de fuente */
-    font-weight: normal; /* Reduce el grosor de la fuente si lo deseas */
+    font-size: 55px;
+    font-weight: normal;
     margin-left: 500px;
-    text-transform: none; /* Remueve la mayúscula si lo deseas */
-    display: inline-block; /* Asegura que se quede en una línea */
+    text-transform: none;
+    display: inline-block;
 }
 
 .horario-txt {
